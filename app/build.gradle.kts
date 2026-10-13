@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -55,4 +58,21 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
     implementation("androidx.compose.material:material-icons-extended")
+
+    // Ktor for downloading the menu
+    implementation("io.ktor:ktor-client-android:2.3.6")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
+
+    // Kotlinx Serialization for reading JSON
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    // Room for saving to the local database
+    implementation("androidx.room:room-runtime:2.6.0")
+    // 2. Changed ksp to kapt here to match your plugins block at the top!
+    ksp("androidx.room:room-compiler:2.6.0")
+
+    implementation("androidx.compose.runtime:runtime-livedata")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }
